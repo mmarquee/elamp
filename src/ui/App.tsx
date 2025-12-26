@@ -4,14 +4,18 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+//  const [stats, setStats] = useState(0);
 
   useEffect(()=>{
-    // @ts-ignore
-    window.electron.subscribeStatistics(stats => console.log({stats}))
+    window.electron.subscribeStatistics((stats) => {
+      console.log({stats})
+     // setStats(stats);
+    })
   }, [])
 
   return (
     <>
+    <div>This is a test!</div>
       <div>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />

@@ -6,13 +6,13 @@ const POLLING_INTERVAL = 500;
 
 export const pollResources = (mainWindow: BrowserWindow) => {
     setInterval (async () => {
-        const cpuUsage = await getCpuUsage()
+        const cpuUsage = await getCpuUsage();
         mainWindow.webContents.send("statistics", {cpuUsage})
     },
     POLLING_INTERVAL)
 }
 
-const getCpuUsage = () => {
+export const getCpuUsage = () => {
     return new Promise(resolve => {
         osUtils.cpuUsage(resolve)
     })
