@@ -1,9 +1,14 @@
 type Statistics = {
-    cpuUsage: never;
+    cpuUsage: number;
 }
 
 type StaticData = {
     cpumodel: string;
+}
+
+type EventPayloadMapping = {
+    statistics: Statistics;
+    getStaticData: StaticData;
 }
 
 interface Window {
