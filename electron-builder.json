@@ -1,16 +1,16 @@
 {
-    "appId": "com.markhumphreys.elamp",
-    "files": ["dist-electron", "dist-react"],
-    "icon": "./desktopIcon.png",
-    "extraResources": ["dist-electron/preload.cjs"],
-    "linux": {
-        "target": "AppImage",
-        "category": "Utility"
-    },
-    "win": {
-        "target": ["portable", "msi"]
-    },
-    "mac": {
-        "target": "dmg"
-    }
+  "appId": "com.markhumphreys.elamp",
+  "files": ["dist-electron", "dist-react"],
+  "icon": "./desktopIcon.png",
+  "extraResources": ["dist-electron/preload.cjs"],
+  "linux": {
+    "target": "AppImage",
+    "category": "Utility"
+  },
+  "win": {
+    "target": ["portable", "msi"]
+  },
+  "mac": {
+    "target": "dmg"
+  }
 }

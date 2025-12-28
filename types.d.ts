@@ -1,19 +1,19 @@
 type Statistics = {
-    cpuUsage: number;
-}
+  cpuUsage: number;
+};
 
 type StaticData = {
-    cpumodel: string;
-}
+  cpumodel: string;
+};
 
 type EventPayloadMapping = {
-    statistics: Statistics;
-    getStaticData: StaticData;
-}
+  statistics: Statistics;
+  getStaticData: StaticData;
+};
 
 interface Window {
-    electron: {
-        getStaticData: () => Promise<StaticData>;
-        subscribeStatistics: (callback: (statistics: Statistics) => void) => void;        
-    }
+  electron: {
+    getStaticData: () => Promise<StaticData>;
+    subscribeStatistics: (callback: (statistics: Statistics) => void) => void;
+  };
 }

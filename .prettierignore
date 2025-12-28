@@ -1,0 +1,10 @@
+# Project / electron stuff
+dist-react
+dist-electron
+
+# Ignore build arifacts
+build
+coverage
+
+# Ignore all HTML files
+*.html

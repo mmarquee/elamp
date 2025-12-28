@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-//  const [stats, setStats] = useState(0);
+  const [count, setCount] = useState(0);
+  const [stats, setStats] = useState<Statistics>({ cpuUsage: 0 });
 
-  useEffect(()=>{
+  useEffect(() => {
     window.electron.subscribeStatistics((stats) => {
-      console.log({stats})
-     // setStats(stats);
-    })
-  }, [])
+      console.log({ stats });
+      setStats(stats);
+    });
+  }, []);
 
   return (
     <>
-    <div>This is a test!</div>
+      <div>This is a test! {stats.cpuUsage}</div>
       <div>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
@@ -34,7 +34,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
