@@ -1,9 +1,41 @@
-import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+//import { useEffect, useState } from "react";
+//import reactLogo from "./assets/react.svg";
+import {
+  Box,
+  Container,
+  createTheme,
+  Grid,
+  Paper,
+  Stack,
+  styled,
+  ThemeProvider,
+} from "@mui/material";
+//import "./App.css";
+import { MusicLibrary } from "./components/MusicLibrary";
+import { MusicPlayer } from "./components/MusicPlayer";
+import { deepPurple, pink } from "@mui/material/colors";
+import CssBaseline from "@mui/material/CssBaseline";
 
-function App() {
-  const [count, setCount] = useState(0);
+const theme = createTheme({
+  palette: {
+    primary: deepPurple,
+    secondary: pink,
+  },
+});
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: (theme.vars ?? theme).palette.text.secondary,
+  ...theme.applyStyles("dark", {
+    backgroundColor: "#1A2027",
+  }),
+}));
+
+const App = () => {
+  /*
   const [stats, setStats] = useState<Statistics>({ cpuUsage: 0 });
 
   useEffect(() => {
@@ -12,29 +44,40 @@ function App() {
       setStats(stats);
     });
   }, []);
+*/
+
+  /*
+      <ThemeProvider theme={theme}>
+        <Grid container spacing={2}>
+          <Grid>
+            <MusicLibrary />
+          </Grid>
+          <Grid>
+            <MusicPlayer />
+          </Grid>
+        </Grid>
+      </ThemeProvider>
+  */
 
   return (
-    <>
-      <div>This is a test! {stats.cpuUsage}</div>
-      <div>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <ThemeProvider theme={theme}>
+      <>
+        <CssBaseline />
+        <Container maxWidth="lg">
+          <Box>
+            <Stack>
+              <Item>
+                <MusicLibrary />
+              </Item>
+              <Item>
+                <MusicPlayer />
+              </Item>
+            </Stack>
+          </Box>
+        </Container>
+      </>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;

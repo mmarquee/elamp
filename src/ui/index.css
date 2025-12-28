@@ -18,6 +18,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -46,9 +47,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -59,10 +62,125 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
+}
+
+.player-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  height: 65px;
+  padding: 5px 20px;
+  background-color: #ffffff;
+  /* iTunes-like background */
+  border-top: 1px solid #ccc;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.play-controls {
+  display: flex;
+  align-items: center;
+}
+
+.play-pause-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  margin-right: 15px;
+}
+
+.play-pause-button svg {
+  fill: #007bff;
+  width: 24px;
+  height: 24px;
+}
+
+.album-cover {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 4px;
+  background-color: #ddd;
+  background-size: cover;
+  background-position: left;
+}
+
+.center-info {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  flex: 1;
+}
+
+.track-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+
+.track-artist {
+  font-size: 10px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+
+.progress-bar-container {
+  width: 70%;
+  background-color: #ddd;
+  border-radius: 4px;
+  height: 4px;
+  position: relative;
+  cursor: pointer;
+}
+
+.progress {
+  height: 100%;
+  background-color: #007bff;
+  width: 0;
+  border-radius: 4px;
+  transition: width 0.2s ease;
+}
+
+.right-controls {
+  display: flex;
+  align-items: center;
+}
+
+.volume-slider {
+  width: 80px;
+  height: 4px;
+  background: #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  width: 10px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
 }
