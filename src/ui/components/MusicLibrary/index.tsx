@@ -1,4 +1,16 @@
-import { Box, Container, Tab, Tabs, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Tab,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Tabs,
+  Typography,
+} from "@mui/material";
+import type { IAudioMetadata } from "music-metadata";
 import { useState } from "react";
 
 function a11yProps(index: number) {
@@ -8,26 +20,42 @@ function a11yProps(index: number) {
   };
 }
 
-export const MusicLibrary = () => {
-  const [value, setValue] = useState(0);
+// List of file metadata
+
+type Props = {
+  metaData: any[];
+};
+
+export const MusicLibrary = ({ metaData }: Props) => {
+  //const [value, setValue] = useState(0);
+
   // @ts-ignore
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+//  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+//    setValue(newValue);
+//  }; 
+
+  if (!metaData) return <></>
 
   return (
     <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="basic tabs example">
-            <Tab label="Songs" {...a11yProps(0)} />
-            <Tab label="Albums" {...a11yProps(1)} />
-            <Tab label="Artists" {...a11yProps(2)} />
-          </Tabs>
-        </Box>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Title</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {metaData.map((row) => (
+              <TableRow 
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                <TableCell component="th" scope="row">
+                  {row.common ? row.common.title: "UNKNOWN"}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </Box>
     </Container>
   );

@@ -1,13 +1,11 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
-import { ipcMainHandle, isDev } from "./utils.js";
+import { isDev } from "./utils.js";
 import { getPreloadPath } from "./pathResolver.js";
-import { getStaticData, pollResources } from "./resourceManager.js";
+import { pollResources } from "./resourceManager.js";
 import { getFilesList } from "./fs/getFilesList.js";
 import { processFilesForMetaData } from "./metadata/processFilesForMetaData.js";
 import { files } from "./db/index.js";
-import { getAlbums } from "./db/getAlbums.js";
-import { getArtists } from "./db/getArtists.js";
 
 app.on("ready", () => {
   const mainWindow = new BrowserWindow({
@@ -24,24 +22,7 @@ app.on("ready", () => {
 
   pollResources(mainWindow);
 
-  ipcMainHandle("getStaticData", () => {
-    return getStaticData();
-  });
+  getFilesList("C:\\Users\\inpwt\\Music", files);
 
-  ipcMainHandle("getArtists", () => {
-    return getArtists();
-  });
-
-  ipcMainHandle("getAlbums", () => {
-    return getAlbums();
-  });  
-
-  //getFilesList("c:\\Users\\inpwt\\Music" , files);
-
-  getFilesList(
-    "C:\\Users\\inpwt\\Music",
-    files
-  );
-
-  processFilesForMetaData(files);
+  processFilesForMetaData(mainWindow, files);
 });

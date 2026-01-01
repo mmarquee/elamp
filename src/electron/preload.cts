@@ -2,14 +2,22 @@ const electron = require("electron");
 
 electron.contextBridge.exposeInMainWorld("electron", {
   subscribeStatistics: (callback) => {
-    // @ts-ignore
     ipcOn("statistics", (stats) => {
       callback(stats);
     });
   },
+
+  subscribeFileUpdates: (callback) => {
+    ipcOn("metadata", (metadata) => {
+      callback(metadata);
+    });
+  },
+
   getStaticData: () => ipcInvoke("getStaticData"),
-  getArtists: () => ipcInvoke("getArtists"),
-  getAlbums: () => ipcInvoke("getAlbums"),
+  //  getArtists: () => ipcInvoke("getArtists"),
+  //  getAlbums: () => ipcInvoke("getAlbums"),
+  //  getTracks: () => ipcInvoke("getTracks"),
+  //  getGenres: () => ipcInvoke("getGenres"),
 } satisfies Window["electron"]);
 
 function ipcInvoke<Key extends keyof EventPayloadMapping>(

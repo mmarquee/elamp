@@ -4,29 +4,25 @@ type Statistics = {
 
 type StaticData = {
   cpumodel: string;
-};
-
-type ArtistsData = {
-  artists: Array<string | undefined>
-}
-
-type AlbumsData = {
-  albums: Array<string | undefined>
-}
+}; 
 
 type EventPayloadMapping = {
   statistics: Statistics;
-  getStaticData: StaticData;
-  getArtists: ArtistsData;
-  getAlbums: AlbumsData;
+  metadata: IAudioMetadata;
+  getStaticData: StaticData; 
+};
+
+type TrackQuery = {
+  album: string;
 };
 
 interface Window {
   electron: {
-    getStaticData: () => Promise<StaticData>;
-    getArtists: () => Promise<ArtistsData>;
-    getAlbums: () => Promise<AlbumsData>;    
+    getStaticData: () => Promise<StaticData>; 
 
     subscribeStatistics: (callback: (statistics: Statistics) => void) => void;
+    subscribeFileUpdates: (
+      callback: (metaData: IAudioMetadata) => void
+    ) => void;
   };
 }

@@ -15,6 +15,8 @@ import { MusicLibrary } from "./components/MusicLibrary";
 import { MusicPlayer } from "./components/MusicPlayer";
 import { deepPurple, pink } from "@mui/material/colors";
 import CssBaseline from "@mui/material/CssBaseline";
+import { useEffect, useState } from "react";
+import type { IAudioMetadata } from "music-metadata";
 
 const theme = createTheme({
   palette: {
@@ -46,7 +48,19 @@ const App = () => {
   }, []);
 */
 
-  
+  const [metaData, setMetaData] = useState<any[]>([]);
+
+  useEffect(() => {
+    window.electron.subscribeFileUpdates((update) => {
+     // console.log({update})
+     // const prev = metaData;
+     // prev.push(update)
+
+     // setMetaData(prev);
+     setMetaData(result => [...result, update]);
+    });
+  });
+
   /*
       <ThemeProvider theme={theme}>
         <Grid container spacing={2}>
@@ -68,7 +82,7 @@ const App = () => {
           <Box>
             <Stack>
               <Item>
-                <MusicLibrary />
+                <MusicLibrary metaData={metaData} />
               </Item>
               <Item>
                 <MusicPlayer />
