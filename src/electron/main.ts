@@ -3,7 +3,8 @@ import path from "path";
 import { ipcMainHandle, isDev } from "./utils.js";
 import { getPreloadPath } from "./pathResolver.js";
 import { getStaticData, pollResources } from "./resourceManager.js";
-import { getFilesList } from "./fs/getFilesList.js";
+import { files, getFilesList } from "./fs/getFilesList.js";
+import { processFilesForMetaData } from "./metadata/processFilesForMetaData.js";
 
 app.on("ready", () => {
   const mainWindow = new BrowserWindow({
@@ -25,8 +26,10 @@ app.on("ready", () => {
   });
 
   // Doing it all at once is too much!
-  //getFilesList("c:\\Users\\inpwt\\Music");
+  // getFilesList("c:\\Users\\inpwt\\Music");
   getFilesList(
     "c:\\Users\\inpwt\\Music\\Zodiac Youth\\Fast Forward The Future"
   );
+
+  processFilesForMetaData(files);
 });

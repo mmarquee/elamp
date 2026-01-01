@@ -3,19 +3,23 @@ import { join } from "path";
 import mime from "mime-types";
 import { getMetaData } from "../metadata/getMetaData.js";
 
-const files = [];
+// Hmm.
+export type FileData = {
+  path: string;
+};
+
+export const files = new Array<FileData>();
 
 const addToFiles = (path: string): number => {
   const mimeType = mime.lookup(path);
   const current = files.length;
 
+  // I think I just have mp3 files, so ho hum
   if (mimeType !== "audio/mpeg") return current;
-
-  getMetaData(path).then((response) => console.log(response?.common));
 
   console.log({ path, mimeType });
 
-  return files.push(path);
+  return files.push({ path });
 };
 
 export const getFilesList = (directory: string) => {

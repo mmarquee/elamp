@@ -1,14 +1,9 @@
-import { readdir } from "fs";
+import { watch } from "fs";
 
 export const watchForFiles = (path: string) => {
-  console.log("Watch for files");
+  console.log("Watch for file changes");
 
-  //  console.log({path})
-
-  //   readdir(path, (err, files) => {
-  //       files.forEach(file => {
-  //          // will also include directory names
-  //          console.log(file);
-  //      });
-  //  });
+  watch(path, { recursive: true }, (eventType, filename) => {
+    console.log(filename, eventType);
+  });
 };
