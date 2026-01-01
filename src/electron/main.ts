@@ -25,11 +25,11 @@ app.on("ready", () => {
     return getStaticData();
   });
 
-  // Doing it all at once is too much!
-  // getFilesList("c:\\Users\\inpwt\\Music");
-  getFilesList(
-    "c:\\Users\\inpwt\\Music\\Zodiac Youth\\Fast Forward The Future"
-  );
+  console.log("Started ", new Date());
+
+  getFilesList("c:\\Users\\inpwt\\Music");
 
   processFilesForMetaData(files);
+
+  console.log("All done! ", new Date());
 });

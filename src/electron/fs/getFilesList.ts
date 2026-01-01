@@ -1,12 +1,7 @@
 import { readdirSync, statSync } from "fs";
 import { join } from "path";
 import mime from "mime-types";
-import { getMetaData } from "../metadata/getMetaData.js";
-
-// Hmm.
-export type FileData = {
-  path: string;
-};
+import { FileData } from "../types.js";
 
 export const files = new Array<FileData>();
 
@@ -17,7 +12,7 @@ const addToFiles = (path: string): number => {
   // I think I just have mp3 files, so ho hum
   if (mimeType !== "audio/mpeg") return current;
 
-  console.log({ path, mimeType });
+  // console.log({ path, mimeType });
 
   return files.push({ path });
 };
