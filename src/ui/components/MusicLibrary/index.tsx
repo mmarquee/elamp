@@ -48,10 +48,18 @@ export const MusicLibrary = ({ metaData }: Props) => {
           <TableBody>
             {metaData.map((row) => (
               <TableRow 
+                key={row.path}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                <TableCell component="th" scope="row">
+                  {row.metadata.common ? row.metadata.common.track.no: "?"}
+                </TableCell>
                 <TableCell component="th" scope="row">
                   {row.metadata.common ? row.metadata.common.title: "UNKNOWN"}
                 </TableCell>
+                <TableCell align="right">{row.metadata.common.artist}</TableCell>
+              <TableCell align="right">{row.metadata.common.year}</TableCell>
+              <TableCell align="right">{row.metadata.common.genre}</TableCell>
+              <TableCell align="right">{row.metadata.common.duration}</TableCell>
               </TableRow>
             ))}
           </TableBody>
