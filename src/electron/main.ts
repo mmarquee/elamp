@@ -3,6 +3,7 @@ import path from "path";
 import { ipcMainHandle, isDev } from "./utils.js";
 import { getPreloadPath } from "./pathResolver.js";
 import { getStaticData, pollResources } from "./resourceManager.js";
+import { getFilesList } from "./fs/getFilesList.js";
 
 app.on("ready", () => {
   const mainWindow = new BrowserWindow({
@@ -22,4 +23,10 @@ app.on("ready", () => {
   ipcMainHandle("getStaticData", () => {
     return getStaticData();
   });
+
+  // Doing it all at once is too much!
+  //getFilesList("c:\\Users\\inpwt\\Music");
+  getFilesList(
+    "c:\\Users\\inpwt\\Music\\Zodiac Youth\\Fast Forward The Future"
+  );
 });

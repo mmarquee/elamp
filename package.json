@@ -27,6 +27,8 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",
+    "mime-types": "^3.0.2",
+    "music-metadata": "^11.10.3",
     "os-utils": "^0.0.14",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
@@ -37,6 +39,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@types/mime-types": "^3.0.1",
     "@types/node": "^24.10.1",
     "@types/os-utils": "^0.0.4",
     "@types/react": "^19.2.5",
