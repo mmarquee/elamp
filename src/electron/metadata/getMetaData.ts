@@ -1,5 +1,4 @@
-import { parseFile, IAudioMetadata } from "music-metadata";
-import { setTimeout } from "timers/promises";
+import { parseFile, IAudioMetadata } from "music-metadata"; 
 
 export const getMetaData = async (
   filePath: string
