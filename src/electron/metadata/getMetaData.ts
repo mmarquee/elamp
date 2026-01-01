@@ -4,8 +4,7 @@ import { setTimeout } from "timers/promises";
 export const getMetaData = async (
   filePath: string
 ): Promise<IAudioMetadata | undefined> => {
-  try {
-    const res = await setTimeout(100, "proceed");
+  try {    
     return await parseFile(filePath);
   } catch (error: any) {
     console.error("Error parsing metadata:", error.message);
