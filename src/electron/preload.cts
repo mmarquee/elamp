@@ -8,6 +8,8 @@ electron.contextBridge.exposeInMainWorld("electron", {
     });
   },
   getStaticData: () => ipcInvoke("getStaticData"),
+  getArtists: () => ipcInvoke("getArtists"),
+  getAlbums: () => ipcInvoke("getAlbums"),
 } satisfies Window["electron"]);
 
 function ipcInvoke<Key extends keyof EventPayloadMapping>(

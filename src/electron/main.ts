@@ -3,8 +3,11 @@ import path from "path";
 import { ipcMainHandle, isDev } from "./utils.js";
 import { getPreloadPath } from "./pathResolver.js";
 import { getStaticData, pollResources } from "./resourceManager.js";
-import { files, getFilesList } from "./fs/getFilesList.js";
+import { getFilesList } from "./fs/getFilesList.js";
 import { processFilesForMetaData } from "./metadata/processFilesForMetaData.js";
+import { files } from "./db/index.js";
+import { getAlbums } from "./db/getAlbums.js";
+import { getArtists } from "./db/getArtists.js";
 
 app.on("ready", () => {
   const mainWindow = new BrowserWindow({
@@ -25,11 +28,20 @@ app.on("ready", () => {
     return getStaticData();
   });
 
-  console.log("Started ", new Date());
+  ipcMainHandle("getArtists", () => {
+    return getArtists();
+  });
 
-  getFilesList("c:\\Users\\inpwt\\Music");
+  ipcMainHandle("getAlbums", () => {
+    return getAlbums();
+  });  
+
+  //getFilesList("c:\\Users\\inpwt\\Music" , files);
+
+  getFilesList(
+    "C:\\Users\\inpwt\\Music",
+    files
+  );
 
   processFilesForMetaData(files);
-
-  console.log("All done! ", new Date());
 });
