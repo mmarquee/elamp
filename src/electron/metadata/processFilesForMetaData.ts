@@ -15,16 +15,26 @@ export const processFilesForMetaData = (
 
     getMetaData(file.path).then((response) => {
       unlock();
-      const value = data.push({ path: file.path, metadata: response, timestamp: new Date() });
+      const value = data.push({
+        path: file.path,
+        metadata: response,
+        timestamp: new Date(),
+      });
 
-      console.log({value, path: file.path, metadata: response, timestamp:new Date() })
-      
-      if (value === files.length) { 
-        ipcWebContentsSend("loadComplete", mainWindow.webContents, true);
+      console.log({
+        value,
+        path: file.path,
+        metadata: response,
+        timestamp: new Date(),
+      });
+
+      if (value === files.length) {
+        console.log("All loaded");
+
+        ipcWebContentsSend("loadComplete", mainWindow.webContents, {
+          count: value,
+        });
       }
-
-      //    console.log({ path: file.path, metadata: response, timestamp:new Date() })
-      //console.log("All done! ", new Date());
     });
   });
 };

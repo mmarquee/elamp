@@ -51,6 +51,13 @@ const App = () => {
   const [metaData, setMetaData] = useState<any[]>([]);
 
   useEffect(() => {
+    window.electron.loadComplete((msg) => {
+      console.log("Got loaded message", { msg });
+    });
+  });
+
+  /*
+  useEffect(() => {
     window.electron.subscribeFileUpdates((update) => {
       // console.log({update})
       // const prev = metaData;
@@ -60,6 +67,7 @@ const App = () => {
       setMetaData((result) => [...result, update]);
     });
   });
+*/
 
   /*
       <ThemeProvider theme={theme}>

@@ -20,9 +20,9 @@ app.on("ready", () => {
     mainWindow.loadFile(path.join(app.getAppPath(), "dist-react/index.html"));
   }
 
-  pollResources(mainWindow); 
+  pollResources(mainWindow);
 
-  getFilesList("C:\\Users\\inpwt\\Music\\Pulp", files); 
+  getFilesList("C:\\Users\\inpwt\\Music\\Various", files);
 
   processFilesForMetaData(mainWindow, files);
 });

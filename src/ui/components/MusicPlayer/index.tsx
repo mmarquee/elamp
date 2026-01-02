@@ -14,7 +14,7 @@ export const MusicPlayer = () => {
   const progressBarRef = useRef(null);
 
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  // const [progress, setProgress] = useState(55);
+  const [progress, setProgress] = useState(55);
   const [volume, setVolume] = useState(1);
 
   const skipNext = () => {};

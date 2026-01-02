@@ -17,10 +17,9 @@ export const getFilesList = (directory: string, files: Files[]) => {
   readdirSync(directory).forEach((f) => {
     const absolute = join(directory, f);
     if (statSync(absolute).isDirectory()) {
-      return getFilesList(absolute, files)
+      return getFilesList(absolute, files);
+    } else {
+      return addToFiles(absolute, files);
     }
-    else {
-      return addToFiles(absolute, files)
-    };
   });
 };

@@ -13,6 +13,12 @@ electron.contextBridge.exposeInMainWorld("electron", {
     });
   },
 
+  loadComplete: (callback) => {
+    ipcOn("loadComplete", (metadata) => {
+      callback(metadata);
+    });
+  },
+
   getStaticData: () => ipcInvoke("getStaticData"),
   //  getArtists: () => ipcInvoke("getArtists"),
   //  getAlbums: () => ipcInvoke("getAlbums"),
