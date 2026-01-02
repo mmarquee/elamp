@@ -4,12 +4,13 @@ type Statistics = {
 
 type StaticData = {
   cpumodel: string;
-}; 
+};
 
 type EventPayloadMapping = {
   statistics: Statistics;
   metadata: IAudioMetadata;
-  getStaticData: StaticData; 
+  getStaticData: StaticData;
+  loadComplete: boolean;
 };
 
 type TrackQuery = {
@@ -18,7 +19,7 @@ type TrackQuery = {
 
 interface Window {
   electron: {
-    getStaticData: () => Promise<StaticData>; 
+    getStaticData: () => Promise<StaticData>;
 
     subscribeStatistics: (callback: (statistics: Statistics) => void) => void;
     subscribeFileUpdates: (

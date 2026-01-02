@@ -52,12 +52,12 @@ const App = () => {
 
   useEffect(() => {
     window.electron.subscribeFileUpdates((update) => {
-     // console.log({update})
-     // const prev = metaData;
-     // prev.push(update)
+      // console.log({update})
+      // const prev = metaData;
+      // prev.push(update)
 
-     // setMetaData(prev);
-     setMetaData(result => [...result, update]);
+      // setMetaData(prev);
+      setMetaData((result) => [...result, update]);
     });
   });
 

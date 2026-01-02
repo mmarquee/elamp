@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { PlayPauseButton } from "./components/PlayPauseButton";
 import { TrackInfo } from "./components/TrackInfo";
-import { Grid, Paper, Stack } from "@mui/material";
+import { Paper, Stack } from "@mui/material";
 import styled from "@emotion/styled";
 
 // @ts=ignore
@@ -14,7 +14,7 @@ export const MusicPlayer = () => {
   const progressBarRef = useRef(null);
 
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [progress, setProgress] = useState(55);
+  // const [progress, setProgress] = useState(55);
   const [volume, setVolume] = useState(1);
 
   const skipNext = () => {};
