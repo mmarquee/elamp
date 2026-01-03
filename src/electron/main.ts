@@ -7,6 +7,16 @@ import { getFilesList } from "./fs/getFilesList.js";
 import { processFilesForMetaData } from "./metadata/processFilesForMetaData.js";
 import { files } from "./db/index.js";
 
+const loadUI = (mainWindow: BrowserWindow): Promise<void> => {
+  if (isDev()) {
+    return mainWindow.loadURL("http://localhost:5123");
+  }
+
+  return mainWindow.loadFile(
+    path.join(app.getAppPath(), "dist-react/index.html")
+  );
+};
+
 app.on("ready", () => {
   const mainWindow = new BrowserWindow({
     webPreferences: {
@@ -14,15 +24,9 @@ app.on("ready", () => {
     },
   });
 
-  if (isDev()) {
-    mainWindow.loadURL("http://localhost:5123");
-  } else {
-    mainWindow.loadFile(path.join(app.getAppPath(), "dist-react/index.html"));
-  }
-
-  pollResources(mainWindow);
-
-  getFilesList("C:\\Users\\inpwt\\Music\\Various", files);
-
-  processFilesForMetaData(mainWindow, files);
+  loadUI(mainWindow).then(() => {
+    pollResources(mainWindow);
+    getFilesList("C:\\Users\\inpwt\\Music\\Pulp", files);
+    processFilesForMetaData(mainWindow, files);
+  });
 });

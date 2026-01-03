@@ -48,13 +48,22 @@ const App = () => {
   }, []);
 */
 
+  const [loaded, setLoaded] = useState<boolean>(false);
+
   const [metaData, setMetaData] = useState<any[]>([]);
 
   useEffect(() => {
     window.electron.loadComplete((msg) => {
       console.log("Got loaded message", { msg });
+      setLoaded(true);
     });
   });
+
+  useEffect(() => {
+    if (loaded) {
+      console.log("Now we are cooking with gas!");
+    }
+  }, [loaded]);
 
   /*
   useEffect(() => {
