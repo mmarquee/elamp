@@ -19,9 +19,10 @@ electron.contextBridge.exposeInMainWorld("electron", {
     });
   },
 
+  getAlbums: () => ipcInvoke("getAlbums"),
+  getArtists: () => ipcInvoke("getArtists"),
+
   getStaticData: () => ipcInvoke("getStaticData"),
-  //  getArtists: () => ipcInvoke("getArtists"),
-  //  getAlbums: () => ipcInvoke("getAlbums"),
   //  getTracks: () => ipcInvoke("getTracks"),
   //  getGenres: () => ipcInvoke("getGenres"),
 } satisfies Window["electron"]);

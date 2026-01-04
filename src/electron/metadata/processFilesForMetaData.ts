@@ -34,6 +34,8 @@ export const processFilesForMetaData = (
         ipcWebContentsSend("loadComplete", mainWindow.webContents, {
           count: value,
         });
+
+        // Probably dump to a file somehow
       }
     });
   });

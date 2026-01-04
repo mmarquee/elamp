@@ -51,6 +51,7 @@ const App = () => {
   const [loaded, setLoaded] = useState<boolean>(false);
 
   const [metaData, setMetaData] = useState<any[]>([]);
+  const [albums, setAlbums] = useState<any[]>([]);
 
   useEffect(() => {
     window.electron.loadComplete((msg) => {
@@ -61,22 +62,25 @@ const App = () => {
 
   useEffect(() => {
     if (loaded) {
-      console.log("Now we are cooking with gas!");
-    }
-  }, [loaded]);
-
-  /*
-  useEffect(() => {
-    window.electron.subscribeFileUpdates((update) => {
-      // console.log({update})
+      // window.electron.subscribeFileUpdates((update) => {
+      //   console.log({update})
       // const prev = metaData;
       // prev.push(update)
 
       // setMetaData(prev);
-      setMetaData((result) => [...result, update]);
-    });
-  });
-*/
+      //  setMetaData((result) => [...result, update]);
+      // });
+
+      console.log("Now we are cooking with gas!");
+
+      window.electron
+        .getAlbums()
+        .then((albums) => setAlbums(albums))
+        .catch((err) => console.log(err));
+
+      console.log({ albums });
+    }
+  }, [loaded]);
 
   /*
       <ThemeProvider theme={theme}>
