@@ -16,7 +16,7 @@ type EventPayloadMapping = {
   getStaticData: StaticData;
   loadComplete: LoadComplete;
 
-  getAlbums: AlbumData;
+  getAlbums: AlbumsData;
   getArtists: ArtistsData;
 };
 
@@ -34,7 +34,7 @@ type AlbumsData = {
 
 interface Window {
   electron: {
-    getAlbums: () => Promise<AlbumData>;
+    getAlbums: () => Promise<AlbumsData>;
     getArtists: () => Promise<ArtistsData>;
     getStaticData: () => Promise<StaticData>;
 

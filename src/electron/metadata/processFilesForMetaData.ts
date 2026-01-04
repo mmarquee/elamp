@@ -1,9 +1,10 @@
 import { BrowserWindow } from "electron";
 import { data } from "../db/index.js";
 import { Files } from "../types.js";
-import { ipcWebContentsSend } from "../utils.js";
+import { ipcMainHandle, ipcWebContentsSend } from "../utils.js";
 import { Mutex } from "../utils/mutex.js";
 import { getMetaData } from "./getMetaData.js";
+import { getAlbums } from "../db/getAlbums.js";
 
 export const processFilesForMetaData = (
   mainWindow: BrowserWindow,
@@ -34,8 +35,11 @@ export const processFilesForMetaData = (
         ipcWebContentsSend("loadComplete", mainWindow.webContents, {
           count: value,
         });
-
         // Probably dump to a file somehow
+
+        ipcMainHandle("getAlbums", () => {
+          return getAlbums();
+        });
       }
     });
   });
