@@ -4,7 +4,6 @@ import {
   Box,
   Container,
   createTheme,
-  Grid,
   Paper,
   Stack,
   styled,
@@ -16,7 +15,6 @@ import { MusicPlayer } from "./components/MusicPlayer";
 import { deepPurple, pink } from "@mui/material/colors";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useEffect, useState } from "react";
-import type { IAudioMetadata } from "music-metadata";
 
 const theme = createTheme({
   palette: {
@@ -51,7 +49,7 @@ const App = () => {
   const [loaded, setLoaded] = useState<boolean>(false);
 
   const [metaData, setMetaData] = useState<any[]>([]);
-  const [albums, setAlbums] = useState<any[]>([]);
+  const [albums, setAlbums] = useState<Array<string | undefined>>([]);
 
   useEffect(() => {
     window.electron.loadComplete((msg) => {
@@ -62,27 +60,19 @@ const App = () => {
 
   useEffect(() => {
     if (loaded) {
-      // window.electron.subscribeFileUpdates((update) => {
-      //   console.log({update})
-      // const prev = metaData;
-      // prev.push(update)
-
-      // setMetaData(prev);
-      //  setMetaData((result) => [...result, update]);
-      // });
-
-      console.log("Now we are cooking with gas!");
-
-      window.electron.getStaticData().then(data => console.log({data}))
-
       window.electron
         .getAlbums()
-        .then((albums) => setAlbums(albums))
+        .then((result) => {
+          console.log(result);
+          setAlbums(result.albums);
+        })
         .catch((err) => console.log(err));
-
-      console.log({ albums });
     }
   }, [loaded]);
+
+  useEffect(() => {
+    console.log("ALbums:", { albums });
+  }, [albums]);
 
   /*
       <ThemeProvider theme={theme}>
@@ -105,7 +95,7 @@ const App = () => {
           <Box>
             <Stack>
               <Item>
-                <MusicLibrary metaData={metaData} />
+                <MusicLibrary albums={albums} />
               </Item>
               <Item>
                 <MusicPlayer />

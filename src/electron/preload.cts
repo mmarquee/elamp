@@ -1,17 +1,17 @@
 const electron = require("electron");
 
 electron.contextBridge.exposeInMainWorld("electron", {
-//  subscribeStatistics: (callback) => {
-//    ipcOn("statistics", (stats) => {
-//      callback(stats);
-//    });
-//  },
+  //  subscribeStatistics: (callback) => {
+  //    ipcOn("statistics", (stats) => {
+  //      callback(stats);
+  //    });
+  //  },
 
-//  subscribeFileUpdates: (callback) => {
-//    ipcOn("metadata", (metadata) => {
-//      callback(metadata);
-//    });
-//  },
+  //  subscribeFileUpdates: (callback) => {
+  //    ipcOn("metadata", (metadata) => {
+  //      callback(metadata);
+  //    });
+  //  },
 
   loadComplete: (callback) => {
     ipcOn("loadComplete", (metadata) => {

@@ -1,6 +1,9 @@
 import {
   Box,
+  Card,
+  CardContent,
   Container,
+  Grid,
   Tab,
   Table,
   TableBody,
@@ -12,6 +15,7 @@ import {
 } from "@mui/material";
 import type { IAudioMetadata } from "music-metadata";
 import { useState } from "react";
+import { AlbumCard } from "./components/albumCard";
 
 function a11yProps(index: number) {
   return {
@@ -23,10 +27,10 @@ function a11yProps(index: number) {
 // List of file metadata
 
 type Props = {
-  metaData: any[];
+  albums: (string | undefined)[];
 };
 
-export const MusicLibrary = ({ metaData }: Props) => {
+export const MusicLibrary = ({ albums }: Props) => {
   //const [value, setValue] = useState(0);
 
   // @ts-ignore
@@ -34,40 +38,20 @@ export const MusicLibrary = ({ metaData }: Props) => {
   //    setValue(newValue);
   //  };
 
-  if (!metaData) return <></>;
+  if (!albums) return <></>;
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth={false} disableGutters>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Title</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {metaData.map((row) => (
-              <TableRow
-                key={row.path}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                <TableCell component="th" scope="row">
-                  {row.metadata.common ? row.metadata.common.track.no : "?"}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {row.metadata.common ? row.metadata.common.title : "UNKNOWN"}
-                </TableCell>
-                <TableCell align="right">
-                  {row.metadata.common.artist}
-                </TableCell>
-                <TableCell align="right">{row.metadata.common.year}</TableCell>
-                <TableCell align="right">{row.metadata.common.genre}</TableCell>
-                <TableCell align="right">
-                  {row.metadata.common.duration}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <Grid
+          sx={{ flexGrow: 1 }}
+          spacing={0}
+          container
+          justifyContent="space-evenly">
+          {albums.map((row) => (
+            <AlbumCard content={row} />
+          ))}
+        </Grid>
       </Box>
     </Container>
   );

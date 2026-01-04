@@ -19,7 +19,7 @@ import { ipcWebContentsSend } from "./utils.js";
 //};
 
 export const getStaticData = () => {
-  console.log("Called getStaticData")
+  console.log("Called getStaticData");
   const cpumodel = os.cpus()[0].model;
   return { cpumodel };
 };

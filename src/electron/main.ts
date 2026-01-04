@@ -1,11 +1,12 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
-import { isDev } from "./utils.js";
+import { ipcMainHandle, isDev } from "./utils.js";
 import { getPreloadPath } from "./pathResolver.js";
 //import { pollResources } from "./resourceManager.js";
 import { getFilesList } from "./fs/getFilesList.js";
 import { processFilesForMetaData } from "./metadata/processFilesForMetaData.js";
 import { files } from "./db/index.js";
+import { getAlbums } from "./db/getAlbums.js";
 
 const loadUI = (mainWindow: BrowserWindow): Promise<void> => {
   if (isDev()) {
@@ -28,9 +29,13 @@ app.on("ready", () => {
     //pollResources(mainWindow);
     getFilesList("C:\\Users\\inpwt\\Music\\Pulp", files);
     processFilesForMetaData(mainWindow, files);
+
+    //   ipcMainHandle("getAlbums", () => {
+    //   return getAlbums();
+    // });
   });
 });
 
 //app.on("window-all-closed", () => {
-//  app.quit();  
+//  app.quit();
 //})
