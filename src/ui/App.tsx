@@ -73,6 +73,8 @@ const App = () => {
 
       console.log("Now we are cooking with gas!");
 
+      window.electron.getStaticData().then(data => console.log({data}))
+
       window.electron
         .getAlbums()
         .then((albums) => setAlbums(albums))

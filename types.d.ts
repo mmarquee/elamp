@@ -11,8 +11,8 @@ type LoadComplete = {
 };
 
 type EventPayloadMapping = {
-  statistics: Statistics;
-  metadata: IAudioMetadata;
+  //statistics: Statistics;
+  //metadata: IAudioMetadata;
   getStaticData: StaticData;
   loadComplete: LoadComplete;
 
@@ -39,9 +39,9 @@ interface Window {
     getStaticData: () => Promise<StaticData>;
 
     loadComplete: (callback: (loadComplete: LoadComplete) => void) => void;
-    subscribeStatistics: (callback: (statistics: Statistics) => void) => void;
-    subscribeFileUpdates: (
-      callback: (metaData: IAudioMetadata) => void
-    ) => void;
+//    subscribeStatistics: (callback: (statistics: Statistics) => void) => void;
+//    subscribeFileUpdates: (
+//      callback: (metaData: IAudioMetadata) => void
+//    ) => void;
   };
 }
