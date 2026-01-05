@@ -71,7 +71,7 @@ const App = () => {
   }, [loaded]);
 
   useEffect(() => {
-    console.log("ALbums:", { albums });
+    console.log("Albums:", { albums });
   }, [albums]);
 
   /*
