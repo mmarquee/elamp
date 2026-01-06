@@ -3,13 +3,25 @@ import { unique } from "./utils.js";
 
 export const getAlbums = (): AlbumsData => {
   console.log(data.length);
-  const result = data.map((item) => `${item.metadata?.common.artist}|${item.metadata?.common.album}|${item.metadata?.common.year}`).filter(unique);
+
+  const dd = data.map((item) => ({
+    key: `${item.metadata?.common.artist}-${item.metadata?.common.album}-${item.metadata?.common.year}`,
+    artist: item.metadata?.common.artist,
+    album: item.metadata?.common.album,
+    year: item.metadata?.common.year,
+  }));
+
+  const result = dd.filter(unique);
+
+  const uniqueArr = Array.from(new Set(dd));
 
   console.log({
-    albums: result,
+    //result,
+    uniqueArr
   });
+  
 
   return {
-    albums: result,
+    albums: uniqueArr,
   };
 };

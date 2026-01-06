@@ -28,8 +28,14 @@ type ArtistsData = {
   artists: Array<string | undefined>;
 };
 
+type AlbumData = {
+  artist: string | undefined;
+  album: string | undefined;
+  year: number | undefined;
+};
+
 type AlbumsData = {
-  albums: Array<string | undefined>;
+  albums: Array<AlbumData | undefined>;
 };
 
 interface Window {

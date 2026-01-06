@@ -27,7 +27,7 @@ function a11yProps(index: number) {
 // List of file metadata
 
 type Props = {
-  albums: (string | undefined)[];
+  albums: (AlbumData | undefined)[];
 };
 
 export const MusicLibrary = ({ albums }: Props) => {
