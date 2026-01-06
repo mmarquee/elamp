@@ -1,5 +1,3 @@
-//import { useEffect, useState } from "react";
-//import reactLogo from "./assets/react.svg";
 import {
   Box,
   Container,
@@ -9,7 +7,6 @@ import {
   styled,
   ThemeProvider,
 } from "@mui/material";
-//import "./App.css";
 import { MusicLibrary } from "./components/MusicLibrary";
 import { MusicPlayer } from "./components/MusicPlayer";
 import { deepPurple, pink } from "@mui/material/colors";
@@ -35,20 +32,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const App = () => {
-  /*
-  const [stats, setStats] = useState<Statistics>({ cpuUsage: 0 });
-
-  useEffect(() => {
-    window.electron.subscribeStatistics((stats) => {
-      console.log({ stats });
-      setStats(stats);
-    });
-  }, []);
-*/
-
   const [loaded, setLoaded] = useState<boolean>(false);
-
-  const [metaData, setMetaData] = useState<any[]>([]);
   const [albums, setAlbums] = useState<Array<AlbumData | undefined>>([]);
 
   useEffect(() => {
@@ -63,29 +47,11 @@ const App = () => {
       window.electron
         .getAlbums()
         .then((result) => {
-          console.log(result);
           setAlbums(result.albums);
         })
         .catch((err) => console.log(err));
     }
   }, [loaded]);
-
-  useEffect(() => {
-    console.log("Albums:", { albums });
-  }, [albums]);
-
-  /*
-      <ThemeProvider theme={theme}>
-        <Grid container spacing={2}>
-          <Grid>
-            <MusicLibrary />
-          </Grid>
-          <Grid>
-            <MusicPlayer />
-          </Grid>
-        </Grid>
-      </ThemeProvider>
-  */
 
   return (
     <ThemeProvider theme={theme}>

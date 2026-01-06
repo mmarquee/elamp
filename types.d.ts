@@ -21,7 +21,7 @@ type EventPayloadMapping = {
 };
 
 type TrackQuery = {
-  album: string;
+  album?: string;
 };
 
 type ArtistData = {
@@ -30,6 +30,10 @@ type ArtistData = {
 
 type ArtistsData = {
   artists: Array<ArtistData | undefined>;
+};
+
+type AlbumQuery = {
+  artist?: string;
 };
 
 type AlbumData = {
