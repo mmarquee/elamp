@@ -1,4 +1,4 @@
-import { data } from "./index.js"; 
+import { data } from "./index.js";
 
 export const getArtists = (): AlbumsData => {
   const result = Array.from(

@@ -49,7 +49,7 @@ const App = () => {
   const [loaded, setLoaded] = useState<boolean>(false);
 
   const [metaData, setMetaData] = useState<any[]>([]);
-  const [albums, setAlbums] = useState<Array<string | undefined>>([]);
+  const [albums, setAlbums] = useState<Array<AlbumData | undefined>>([]);
 
   useEffect(() => {
     window.electron.loadComplete((msg) => {

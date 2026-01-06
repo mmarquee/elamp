@@ -24,12 +24,22 @@ type TrackQuery = {
   album: string;
 };
 
+type ArtistData = {
+  artist: string;
+};
+
 type ArtistsData = {
-  artists: Array<string | undefined>;
+  artists: Array<ArtistData | undefined>;
+};
+
+type AlbumData = {
+  artist: string;
+  album: string;
+  year: string;
 };
 
 type AlbumsData = {
-  albums: Array<string | undefined>;
+  albums: Array<AlbumData | undefined>;
 };
 
 interface Window {
