@@ -21,11 +21,25 @@ type EventPayloadMapping = {
 };
 
 type TrackQuery = {
-  album: string;
+  album?: string;
+};
+
+type ArtistData = {
+  artist: string;
 };
 
 type ArtistsData = {
-  artists: Array<string | undefined>;
+  artists: Array<ArtistData | undefined>;
+};
+
+type AlbumQuery = {
+  artist?: string;
+};
+
+type AlbumData = {
+  artist: string;
+  album: string;
+  year: string;
 };
 
 type AlbumData = {

@@ -1,10 +1,18 @@
 import { data } from "./index.js";
-import { unique } from "./utils.js";
 
 export const getArtists = (): ArtistsData => {
-  const result = data
-    .map((item) => item.metadata?.common.artist)
-    .filter(unique);
+  const result = Array.from(
+    new Set(
+      data
+        .map((item) => {
+          return {
+            artist: item.metadata?.common.artist,
+          };
+        })
+        .map((obj) => JSON.stringify(obj))
+    )
+  ).map((e) => JSON.parse(e));
+
   return {
     artists: result,
   };
