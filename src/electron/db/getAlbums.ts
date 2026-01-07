@@ -6,7 +6,7 @@ export const getAlbums = (): AlbumsData => {
       data
         .map((item) => {
           return {
-            artist: item.metadata?.common.artist,
+            artist: item.metadata?.common.albumartist,
             album: item.metadata?.common.album,
             year: item.metadata?.common.year,
           };
