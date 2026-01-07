@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
 import { ipcMainHandle, isDev } from "./utils.js";
-import { getPreloadPath } from "./pathResolver.js";
+import { getPreloadPath, getUIPath } from "./pathResolver.js";
 //import { pollResources } from "./resourceManager.js";
 import { getFilesList } from "./fs/getFilesList.js";
 import { processFilesForMetaData } from "./metadata/processFilesForMetaData.js";
@@ -13,9 +13,7 @@ const loadUI = (mainWindow: BrowserWindow): Promise<void> => {
     return mainWindow.loadURL("http://localhost:5123");
   }
 
-  return mainWindow.loadFile(
-    path.join(app.getAppPath(), "dist-react/index.html")
-  );
+  return mainWindow.loadFile(getUIPath());
 };
 
 app.on("ready", () => {
@@ -26,16 +24,7 @@ app.on("ready", () => {
   });
 
   loadUI(mainWindow).then(() => {
-    //pollResources(mainWindow);
     getFilesList("C:\\Users\\inpwt\\Music\\Pulp", files);
     processFilesForMetaData(mainWindow, files);
-
-    //   ipcMainHandle("getAlbums", () => {
-    //   return getAlbums();
-    // });
   });
 });
-
-//app.on("window-all-closed", () => {
-//  app.quit();
-//})

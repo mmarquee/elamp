@@ -11,8 +11,6 @@ type LoadComplete = {
 };
 
 type EventPayloadMapping = {
-  //statistics: Statistics;
-  //metadata: IAudioMetadata;
   getStaticData: StaticData;
   loadComplete: LoadComplete;
 
